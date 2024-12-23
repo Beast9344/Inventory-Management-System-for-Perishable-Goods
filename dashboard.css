@@ -1,0 +1,163 @@
+/* Reset and Typography */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+h1, h5 {
+    margin: 0;
+    color: #212529;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Chart Container Styles */
+.col-md-6 {
+    background-color: #dadae4;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 50px;
+    flex: 1;
+    max-width: 48%;
+    box-sizing: border-box;
+}
+
+.col-md-6:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* General Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Enhanced Card Styling */
+.card-enhanced {
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1), -6px -6px 12px rgba(255, 255, 255, 0.7);
+    padding: 25px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-enhanced:hover {
+    transform: translateY(-8px);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2), -8px -8px 16px rgba(255, 255, 255, 0.8);
+}
+
+.card-enhanced h5 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #495057;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-enhanced .card-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #007bff;
+}
+
+/* Chart Section */
+canvas {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+/* Footer */
+footer {
+    background: #343a40;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Dashboard Layout Adjustments */
+.content-wrapper {
+    margin-left: 240px;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.mb-3, .mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-md-6 {
+        max-width: 100%;
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Aesthetic Enhancements */
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #444;
+}
+
+h3 {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #555;
+}
+
+.chart-title {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 30px;
+    color: #666;
+}
