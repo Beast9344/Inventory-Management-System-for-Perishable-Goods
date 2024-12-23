@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Storage Preview</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f0f4ff, #f7f0ff);
+      }
+
+      /* Sidebar Styles */
+      .wrapper {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .main-sidebar {
+        width: 250px;
+        background-color: #343a40;
+        color: white;
+        position: fixed;
+        height: 100vh;
+        left: 0;
+        top: 0;
+      }
+
+      .brand-link {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #4b545c;
+        text-decoration: none;
+        color: white;
+      }
+      /* Just update this style in your CSS */
+      .main-sidebar {
+        width: 250px;
+        background-color: #2c3e50; /* Added dark blue background color */
+        color: white;
+        position: fixed;
+        height: 100vh;
+        left: 0;
+        top: 0;
+      }
+      .brand-image {
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .brand-text {
+        font-weight: 300;
+      }
+
+      .sidebar {
+        padding: 10px;
+      }
+
+      .nav-sidebar {
+        list-style: none;
+      }
+
+      .nav-item {
+        margin-bottom: 5px;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        color: #c2c7d0;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .nav-link:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      .nav-link.active {
+        background: #007bff;
+        color: white;
+        border-radius: 4px;
+      }
+
+      .nav-icon {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
+      /* Main Content Styles */
+      .content-wrapper {
+        flex: 1;
+        margin-left: 250px;
+        padding: 20px;
+      }
+
+      /* Existing Styles */
+      .card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #6366f1;
+      }
+
+      .storage-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .status-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .healthy {
+        background: #10b981;
+      }
+      .warning {
+        background: #f59e0b;
+      }
+
+      .progress-bar {
+        background: #f3f4f6;
+        height: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+
+      .progress {
+        height: 100%;
+        transition: width 0.3s;
+        background: linear-gradient(90deg, #6366f1, #4f46e5);
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .metric-box {
+        background: linear-gradient(135deg, #f0f7ff, #e0e7ff);
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        gap: 30px;
+        font-size: 26px;
+        justify-content: space-between;
+      }
+
+      .inventory-grid {
+        display: grid;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .inventory-item {
+        background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+        padding: 10px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .add-form {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      input,
+      select {
+        padding: 8px;
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+      }
+
+      .environment-control {
+        width: 60px;
+        padding: 2px 4px;
+        margin: 0 5px;
+        font-size: 25px;
+      }
+
+      button {
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      .edit-btn {
+        background: #3b82f6;
+        margin-right: 5px;
+        padding: 6px 12px;
+      }
+
+      .remove-btn {
+        background: #ef4444;
+        padding: 6px 12px;
+      }
+
+      .item-controls {
+        display: flex;
+        gap: 5px;
+      }
+
+      /* Alert Styles */
+      .alert {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        border-radius: 5px;
+        color: white;
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+      }
+
+      .alert-success {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+
+      .alert-error {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      h4 {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar main-sidebar">
+        <a href="#" class="brand-link">
+          <img
+            src="dist/img/AdminLTELogo.png"
+            alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3"
+          />
+          <span class="brand-text font-weight-light">Inventory System</span>
+        </a>
+        <nav class="mt-2">
+          <ul class="nav-sidebar">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin.html" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Admin Edits</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="orders.html" class="nav-link">
+                  <i class="nav-icon fas fa-shopping-cart"></i>
+                  <p>Sales Orders</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="products.html" class="nav-link">
+                  <i class="nav-icon fas fa-box"></i>
+                  <p>Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="warehouses.html" class="nav-link">
+                  <i class="nav-icon fas fa-warehouse"></i>
+                  <p>Warehouses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="employees.html" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>Employees</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="alerts.html" class="nav-link">
+                  <i class="nav-icon fas fa-exclamation-triangle"></i>
+                  <p>Alerts</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="StorageMonitoring.html" class="nav-link active">
+                  <i class="nav-icon fas fa-thermometer-half"></i>
+                  <p>Storage Monitoring</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="login.html" class="nav-link">
+                  <i class="nav-icon fas fa-sign-in-alt"></i>
+                  <p>Log Out</p>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="storage-header">
+            <div class="status-icon healthy"></div>
+            <h3>Primary Storage</h3>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress" style="width: 16%"></div>
+          </div>
+          <div>16% Used (800/5000 kg)</div>
+
+
+
+          <h4>Inventory</h4>
+          <div class="inventory-grid">
+            <div class="inventory-item">
+              <span>Rice: 500 kg</span>
+              <div class="item-controls">
+                <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="remove-btn"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+            <div class="inventory-item">
+              <span>Wheat: 300 kg</span>
+              <div class="item-controls">
+                <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="remove-btn"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-form">
+            <input type="text" placeholder="Good Name" class="good-name" />
+            <input type="number" placeholder="Quantity" class="good-quantity" />
+            <select class="good-unit">
+              <option value="kg">kg</option>
+              <option value="liters">liters</option>
+              <option value="units">units</option>
+            </select>
+            <button>Add</button>
+          </div>
+        </div>
+
+        <!-- Backup Storage Card -->
+        <div class="card">
+          <div class="storage-header">
+            <div class="status-icon warning"></div>
+            <h3>Backup Storage</h3>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress" style="width: 11.7%"></div>
+          </div>
+          <div>11.7% Used (350/3000 kg)</div>
+
+
+          <h4>Inventory</h4>
+          <div class="inventory-grid">
+            <div class="inventory-item">
+              <span>Sugar: 250 kg</span>
+              <div class="item-controls">
+                <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="remove-btn"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+            <div class="inventory-item">
+              <span>Salt: 100 kg</span>
+              <div class="item-controls">
+                <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="remove-btn"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-form">
+            <input type="text" placeholder="Good Name" class="good-name" />
+            <input type="number" placeholder="Quantity" class="good-quantity" />
+            <select class="good-unit">
+              <option value="kg">kg</option>
+              <option value="liters">liters</option>
+              <option value="units">units</option>
+            </select>
+            <button>Add</button>
+          </div>
+        </div>
+      </div>
+
+
+      
+    </div>
+    <script src="StorageMonitoring.js"></script>
+  </body>
+</html>

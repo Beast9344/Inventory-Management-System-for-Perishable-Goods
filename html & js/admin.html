@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin - Manage Dashboard Data</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Chart.js (for generating charts) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="dashboard.html" class="nav-link">Home</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="#" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+                <span class="brand-text font-weight-light">Admin Panel</span>
+            </a>
+        
+
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="dashboard.html" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin.html" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Admin Edits</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="orders.php" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>Sales Orders</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="products.php" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="warehouses.php" class="nav-link">
+                                <i class="nav-icon fas fa-warehouse"></i>
+                                <p>Warehouses</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="employees.php" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Employees</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="alerts.php" class="nav-link">
+                                <i class="nav-icon fas fa-exclamation-triangle"></i>
+                                <p>Alerts</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="storage.php" class="nav-link ">
+                                <i class="nav-icon fas fa-thermometer-half"></i>
+                                <p>Storage Monitoring</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.html" class="nav-link">
+                                <i class="nav-icon fas fa-sign-in-alt"></i>
+                                <p>Log Out</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+
+
+
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Content Header -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Manage Dashboard Data</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <form id="updateForm">
+                        <div class="row">
+                            <!-- Dashboard Data Section -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>New Orders</label>
+                                    <p id="currentNewOrders">0</p>
+                                    <label for="newOrdersInput">Update New Orders</label>
+                                    <input type="number" id="newOrdersInput" class="form-control" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Bounce Rate</label>
+                                    <p id="currentBounceRate">0%</p>
+                                    <label for="bounceRateInput">Update Bounce Rate (%)</label>
+                                    <input type="number" id="bounceRateInput" class="form-control" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>User Registrations</label>
+                                    <p id="currentUserRegistrations">0</p>
+                                    <label for="userRegistrationsInput">Update User Registrations</label>
+                                    <input type="number" id="userRegistrationsInput" class="form-control" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Unique Visitors</label>
+                                    <p id="currentUniqueVisitors">0</p>
+                                    <label for="uniqueVisitorsInput">Update Unique Visitors</label>
+                                    <input type="number" id="uniqueVisitorsInput" class="form-control" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sales Charts -->
+                        <div class="row">
+                            <!-- Weekly Sales Chart -->
+                            <div class="col-md-6">
+                                <h4>Weekly Sales</h4>
+                                <canvas id="weeklySalesChart"></canvas>
+                                <label for="weeklySalesInput">Update Weekly Sales (comma separated)</label>
+                                <input type="text" id="weeklySalesInput" class="form-control" value="">
+                            </div>
+
+                            <!-- Monthly Sales Chart -->
+                            <div class="col-md-6">
+                                <h4>Monthly Sales</h4>
+                                <canvas id="monthlySalesChart"></canvas>
+                                <label for="monthlySalesInput">Update Monthly Sales (comma separated)</label>
+                                <input type="text" id="monthlySalesInput" class="form-control" value="">
+                            </div>
+                        </div>
+
+                        <!-- Stock Alerts -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Stock Alerts</h4>
+                                <ul id="currentStockAlerts">
+                                    <!-- Stock alerts will be shown here -->
+                                </ul>
+                                <label for="stockAlertsInput">Update Stock Alerts (JSON format)</label>
+                                <textarea id="stockAlertsInput" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Latest Orders -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Latest Orders</h4>
+                                <ul id="currentLatestOrders">
+                                    <!-- Latest orders will be shown here -->
+                                </ul>
+                                <label for="latestOrdersInput">Update Latest Orders (JSON format)</label>
+                                <textarea id="latestOrdersInput" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Update Dashboard Data</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <strong>&copy; 2024 <a href="#">Inventory Management System</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- Custom Dashboard JS -->
+    <script src="admin.js"></script>
+</body>
+</html>

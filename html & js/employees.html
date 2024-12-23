@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employees - Inventory Management System</title>
+
+    <!-- Google Font: Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   
+
+       <!-- Ionicons -->
+       <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+       <!-- overlayScrollbars -->
+       <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
+
+   
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #f8f9fa;
+        }
+        .dark-mode .card {
+            background-color: #1e1e1e;
+        }
+        .main-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #343a40;
+            width: 250px;
+            z-index: 1030;
+        }
+        .wrapper {
+            margin-left: 250px;
+        }
+        .content-wrapper {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .brand-link {
+            height: 50px;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+        }
+        .brand-link img {
+            height: 60px;
+            width: auto;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding: 5px 5px;
+        }
+        .brand-text {
+            font-size: 14px;
+            margin-left: 10px;
+            margin-top: 20px;
+        }
+        .nav-sidebar {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+        .nav-sidebar .nav-item {
+            width: 100%;
+        }
+        .nav-sidebar .nav-link {
+            padding: 10px 15px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .nav-sidebar .nav-link.active {
+            background-color: #495057;
+        }
+        .search-container {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+        }
+        .category-container button {
+            width: 150px;
+        }
+        #dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .nav-item {
+            padding-left: 30px;
+        }
+       
+ 
+        .minimum-height {
+            min-height: calc(90vh - 104px);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Dark Mode Toggle -->
+        <!-- <div id="dark-mode-toggle" class="text-primary">
+            <i class="fas fa-moon fa-2x"></i>
+        </div> -->
+
+
+            <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="dashboard.html" class="nav-link">Home</a>
+            </li>
+
+        </ul>
+    </nav>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="#" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+                <span class="brand-text font-weight-light">Inventory System</span>
+            </a>
+
+
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="dashboard.html" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin.html" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>Admin Edits</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="orders.html" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>Sales Orders</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="products.html" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="warehouses.html" class="nav-link">
+                                <i class="nav-icon fas fa-warehouse"></i>
+                                <p>Warehouses</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="employees.html" class="nav-link active">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Employees</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="alerts.html" class="nav-link">
+                                <i class="nav-icon fas fa-exclamation-triangle"></i>
+                                <p>Alerts</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="StorageMonitoring.html" class="nav-link ">
+                                <i class="nav-icon fas fa-thermometer-half"></i>
+                                <p>Storage Monitoring</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.html" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out"></i>
+                                <p>Log Out</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content-wrapper minimum-height">
+            <div class="container mt-3">
+                <div class="text-left mb-4">
+                    <h1>Employee Directory</h1>
+                    <p>Search and explore employee details</p>
+                </div>
+
+                <!-- Search Container -->
+                <div class="card search-container p-3 mb-3">
+                    <h3>Search Employee</h3>
+                    <input type="text" id="employee-id" class="form-control mb-2" placeholder="Enter Employee ID">
+                    <button onclick="searchEmployee()" class="btn btn-light">Search</button>
+                </div>
+
+                <!-- Filters -->
+                <h3 class="mb-3">Browse by Filter</h3>
+                <div class="category-container d-flex justify-content-start mb-4">
+                    <button class="btn btn-outline-primary me-2" onclick="filterByCategory('Sales')">Sales</button>
+                    <button class="btn btn-outline-success me-2" onclick="filterByCategory('IT')">IT</button>
+                    <button class="btn btn-outline-danger me-2" onclick="filterByCategory('Marketing')">Marketing</button>
+                    <button class="btn btn-outline-warning me-2" onclick="filterByCategory('Admin')">Admin</button>
+                    <button class="btn btn-outline-dark me-2" onclick="filterByCategory('HR')">HR</button>
+                    <button class="btn btn-outline-secondary" id="show-all-employees-btn">All Employees</button>
+                </div>
+
+                <!-- Employee List -->
+                <div id="employee-list" class="mt-4">
+                    <div id="loading-spinner" class="loading">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="filtered-employees" class="row"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Footer -->
+<footer class="main-footer bg-dark text-white mt-5 p-3 text-center">
+    <div class="container">
+    
+        <strong>&copy; 2024 <a href="#" class="text-white text-decoration-none">Inventory Management System</a>.</strong>
+        <p class="mb-0">All rights reserved.</p>
+        <p class="mb-0">
+            Designed and Developed by <a href="#" class="text-primary text-decoration-none">Esha</a>
+        </p>
+    </div>
+</footer>
+
+
+    <!-- External Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+
+    <script src="employees.js"></script>
+</body>
+</html>
